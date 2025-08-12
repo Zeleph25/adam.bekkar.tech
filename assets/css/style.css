@@ -1,10 +1,120 @@
+:root {
+    --surface: #f9f9f9;
+    --text-primary: #333;
+    --accent: #42b983;
+    --accent-hover: #2a7a5e;
+    --text-secondary: #555;
+    --tag-bg: #42b983;
+    --tag-text: #fff;
+    --heading-color: #2a7f5a;
+    --muted: #888;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --fade-duration: 0.3s;
+}
+
+[data-theme="dark"] {
+    --surface: #121212;
+    --text-primary: #ddd;
+    --accent: #66cdaa;
+    --accent-hover: #44a488;
+    --text-secondary: #aaa;
+    --tag-bg: #66cdaa;
+    --tag-text: #121212;
+    --heading-color: #44a488;
+    --muted: #999;
+    --shadow-color: rgba(0, 0, 0, 0.7);
+}
+
 body {
     font-family: Arial, sans-serif;
     max-width: 800px;
     margin: 40px auto;
     padding: 0 20px;
-    background: #f9f9f9;
-    color: #333;
+    background: var(--surface);
+    color: var(--text-primary);
+}
+
+#initial-loading-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--surface);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.25rem;
+    color: var(--text-primary);
+    z-index: 9999;
+    user-select: none;
+    transition: opacity var(--fade-duration) ease;
+}
+
+.spinner {
+    border: 4px solid #ccc;
+    border-top: 4px solid var(--accent);
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading-message {
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+#app {
+    visibility: hidden;
+}
+
+.hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem;
+    gap: 2rem;
+    position: relative;
+}
+
+.theme-toggle-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: var(--accent);
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .theme-toggle-btn {
+        position: static;
+        order: -1;
+        margin-bottom: 1rem;
+        align-self: center;
+    }
+}
+
+:root,
+body,
+.hero-section,
+.skill-list li,
+a,
+.no-link,
+.skill-category h3,
+.hero-text p {
+    transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 header {
@@ -12,21 +122,95 @@ header {
     margin-bottom: 40px;
 }
 
+.hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem;
+    gap: 2rem;
+}
+
+.hero-text {
+    flex: 1;
+}
+
+.hero-networks {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.network-link {
+    display: flex;
+    gap: 0.5rem;
+    color: var(--accent);color: var(--accent);
+    transition: color 0.3s ease;
+}
+
+.network-link:hover {
+    color: var(--accent-hover);
+}
+
+.network-link i {
+    font-size: 1.3rem;
+}
+
+.network-link img {
+    width: 20px;
+    height: 20px;
+}
+
+.hero-text h1 {
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.hero-text p {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+}
+
+.hero-image {
+    flex-shrink: 0;
+}
+
+.hero-image img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
 h1 {
     margin-bottom: 10px;
 }
 
 section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
     margin-bottom: 30px;
+    box-sizing: border-box;
 }
 
 a {
-    color: #42b983;
+    color: var(--accent);
     text-decoration: none;
 }
 
 .no-link {
-    color: #888;
+    color: var(--muted);
     font-style: italic;
 }
 
@@ -47,8 +231,8 @@ ul {
 }
 
 .skill-list li {
-    background: #42b983;
-    color: white;
+    background: var(--tag-bg);
+    color: var(--tag-text);
     padding: 5px 10px;
     border-radius: 15px;
     list-style: none;
@@ -62,5 +246,5 @@ ul {
 .skill-category h3 {
     margin-bottom: 8px;
     font-weight: 600;
-    color: #2a7f5a;
+    color: var(--heading-color);
 }
