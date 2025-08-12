@@ -1,42 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>My Portfolio</title>
-  <style>
-    body {
-        font-family: Arial, sans-serif;
-        max-width: 800px;
-        margin: 40px auto;
-        padding: 0 20px;
-        background: #f9f9f9;
-        color: #333;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="Adam Bekkar's personal portfolio showcasing projects, skills, and contact information." />
+    <meta name="author" content="Adam Bekkar" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#42b983" />
+    <meta name="keywords" content="Portfolio, Adam Bekkar, Computer Science, Projects, Skills, Contact" />
     
-    header {
-        text-align: center;
-        margin-bottom: 40px;
-    }
-    
-    h1 {
-        margin-bottom: 10px;
-    }
-    
-    section {
-        margin-bottom: 30px;
-    }
-    
-    a {
-        color: #42b983;
-        text-decoration: none;
-    }
-    
-    .no-link {
-        color: #888;
-        font-style: italic;
-    }
-  </style>
+    <link rel="icon" href="assets/icons/favicon.ico">
+    <link rel="apple-touch-icon" href="assets/icons/favicon.ico">
+    <link rel="stylesheet" media="all" href="assets/css/style.css" type="text/css" />
+
+    <title>Portfolio</title>
 </head>
 <body>
     <div id="app">
@@ -55,6 +33,31 @@
                     </template>
                 </li>
             </ul>
+        </section>
+
+        <section>
+            <h2>Skills</h2>
+
+            <div class="skill-category">
+                <h3>Programming Languages</h3>
+                <ul class="skill-list">
+                    <li v-for="skill in skills.programming" :key="skill">{{ skill }}</li>
+                </ul>
+            </div>
+
+            <div class="skill-category">
+                <h3>Tools</h3>
+                <ul class="skill-list">
+                    <li v-for="tool in skills.tools" :key="tool">{{ tool }}</li>
+                </ul>
+            </div>
+
+            <div class="skill-category">
+                <h3>Spoken Languages</h3>
+                <ul class="skill-list">
+                    <li v-for="lang in skills.spoken" :key="lang">{{ lang }}</li>
+                </ul>
+            </div>
         </section>
         
         <section>
@@ -83,11 +86,20 @@
                     { id: 7, title: "Small-scale ML models", description: "Project description." },
                     { id: 8, title: "Exploring Computer Graphics", description: "Project description." },
                     { id: 9, title: "Distributed Key-Value Store", description: "Project description." },
-                    { id: 10, title: "S4S-Connect", description: "Project description." },
+                    { id: 10, title: "S4S-Connect", description: "Project description." }
                 ],
+                experiences: [
+                    { id: 1, position: "Some experience.", place: "Some place.", period: "Some period.", details: "Some details." },
+                    { id: 2, position: "Some experience.", place: "Some place.", period: "Some period.", details: "Some details." }
+                ],
+                skills: {
+                    programming: ["Some Langage.", "Some Langage.", "Some Langage.", "Some Langage.", "Some Langage.", "Some Langage."],
+                    tools: ["Some Tool.", "Some Tool.", "Some Tool."],
+                    spoken: ["Some Langage.", "Some Langage.", "Some Langage."]
+                },
                 contact: {
                     email: "adam.bekkar@epfl.ch",
-                    linkedin: "https://me.adam.bekkar.tech"
+                    linkedin: "https://me.adam.bekkar.tech",
                 }
             }
         }
