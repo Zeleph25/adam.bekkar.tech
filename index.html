@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Portfolio</title>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 0 20px;
+        background: #f9f9f9;
+        color: #333;
+    }
+    
+    header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    
+    h1 {
+        margin-bottom: 10px;
+    }
+    
+    section {
+        margin-bottom: 30px;
+    }
+    
+    a {
+        color: #42b983;
+        text-decoration: none;
+    }
+    
+    .no-link {
+        color: #888;
+        font-style: italic;
+    }
+  </style>
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>{{ name }}</h1>
+            <p>{{ tagline }}</p>
+        </header>
+        
+        <section>
+            <h2>Projects</h2>
+            <ul>
+                <li v-for="project in projects" :key="project.id">
+                    <a :href="project.link" target="_blank" rel="noopener">{{ project.title }}</a>
+                    <template v-if="!project.link">
+                        <span class="no-link"> (Link is coming)</span>
+                    </template>
+                </li>
+            </ul>
+        </section>
+        
+        <section>
+            <h2>Contact</h2>
+            <p>Email: <a :href="'mailto:' + contact.email">{{ contact.email }}</a></p>
+            <p>LinkedIn: <a :href="contact.linkedin" target="_blank" rel="noopener">{{ contact.linkedin }}</a></p>
+        </section>
+    </div>
+    
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+    const { createApp } = Vue;
+
+    createApp({
+        data() {
+            return {
+                name: "Adam Bekkar",
+                tagline: "Aspiring computer science student interested in research and problem-solving.",
+                projects: [
+                    { id: 1, title: "Vestibulum", description: "Project description." },
+                    { id: 2, title: "ICMon", description: "Project description." },
+                    { id: 3, title: "ChaCuN", description: "Project description." },
+                    { id: 4, title: "Game of Life", description: "Project description." },
+                    { id: 5, title: "Boids Simulation", description: "Project description." },
+                    { id: 6, title: "Pixel Construction", description: "Project description." },
+                    { id: 7, title: "Small-scale ML models", description: "Project description." },
+                    { id: 8, title: "Exploring Computer Graphics", description: "Project description." },
+                    { id: 9, title: "Distributed Key-Value Store", description: "Project description." },
+                    { id: 10, title: "S4S-Connect", description: "Project description." },
+                ],
+                contact: {
+                    email: "adam.bekkar@epfl.ch",
+                    linkedin: "https://me.adam.bekkar.tech"
+                }
+            }
+        }
+    }).mount('#app')
+    </script>
+    </body>
+</html>
