@@ -214,6 +214,109 @@ a {
     font-style: italic;
 }
 
+.project-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--surface);
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 6px var(--shadow-color);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-item:hover {
+    box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.project-description {
+    flex: 1;
+    padding-right: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-tags {
+    margin-top: 0.8rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.more-details-btn {
+    margin-top: 1.2rem;
+    background-color: var(--accent);
+    color: var(--tag-text);
+    border: none;
+    padding: 0.6rem 1.4rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.95rem;
+    width: max-content;
+    text-decoration: none;
+    text-align: center;
+    box-shadow: 0 3px 6px var(--shadow-color);
+    transition: 
+        background-color var(--fade-duration) ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.more-details-btn:hover {
+    background-color: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px var(--shadow-color);
+}
+
+.more-details-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px var(--shadow-color);
+}
+
+.more-details-btn:focus {
+    outline: 2px solid var(--accent-hover);
+    outline-offset: 3px;
+}
+
+.project-image {
+    flex-shrink: 0;
+}
+
+.project-image img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px var(--shadow-color);
+}
+
+.project-tags {
+    margin-top: 0.8rem;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.project-tag {
+    background: linear-gradient(
+        to bottom right,
+        color-mix(in srgb, var(--tag-bg) 85%, white 15%),
+        color-mix(in srgb, var(--tag-bg) 85%, black 15%)
+    );
+    color: var(--tag-text);
+    border-radius: 12px;
+    padding: 0.25rem 0.7rem;
+    font-size: 0.9em;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    border: 1px solid color-mix(in srgb, var(--tag-bg) 80%, var(--surface) 20%);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+    user-select: none;
+    white-space: nowrap;
+    line-height: 1.3;
+}
+
 ul {
     list-style-type: disc;
     padding-left: 20px;

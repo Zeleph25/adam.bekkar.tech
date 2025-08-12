@@ -48,14 +48,19 @@
             <h2>Projects</h2>
             <div v-for="category in ['Personal', 'Academic']" :key="category" class="project-category">
                 <h3>{{ category }}</h3>
-                <ul>
-                    <li v-for="project in projects.filter(p => p.category === category)" :key="project.id">
-                        <a :href="project.link" target="_blank" rel="noopener">{{ project.title }}</a>
-                        <template v-if="!project.link">
-                            <span class="no-link"> (Link is coming)</span>
-                        </template>
-                    </li>
-                </ul>
+                <div v-for="project in projects.filter(p => p.category === category)" :key="project.id" class="project-item">
+                    <div class="project-description">
+                        <h4>{{ project.title }}</h4>
+                        <p>{{ project.description || 'Lorem ipsum dolor sit amet...' }}</p>
+                        <div class="project-tags">
+                            <span v-for="(tag, index) in project.tags" :key="index" class="project-tag">{{ tag }}</span>
+                        </div>
+                        <a href="#" class="more-details-btn">More details</a>
+                    </div>
+                    <div class="project-image">
+                        <img src="assets/img/me.png" :alt="'Project image for ' + project.title" />
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -124,16 +129,76 @@
                     name: "Adam Bekkar",
                     tagline: "Aspiring computer science student interested in research and problem-solving.",
                     projects: [
-                        { id: 1, title: "Vestibulum", description: "Project description.", category: "Personal" },
-                        { id: 2, title: "ICMon", description: "Project description.", category: "Academic" },
-                        { id: 3, title: "ChaCuN", description: "Project description.", category: "Academic" },
-                        { id: 4, title: "Game of Life", description: "Project description.", category: "Academic" },
-                        { id: 5, title: "Boids Simulation", description: "Project description.", category: "Academic" },
-                        { id: 6, title: "Pixel Construction", description: "Project description.", category: "Academic" },
-                        { id: 7, title: "Small-scale ML models", description: "Project description.", category: "Academic" },
-                        { id: 8, title: "Exploring Computer Graphics", description: "Project description.", category: "Academic" },
-                        { id: 9, title: "Distributed Key-Value Store", description: "Project description.", category: "Academic" },
-                        { id: 10, title: "S4S-Connect", description: "Project description.", category: "Personal" }
+                        {
+                            id: 1,
+                            title: "Vestibulum",
+                            description: "Project description.",
+                            category: "Personal",
+                            tags: ["tag1", "tag2", "tag3"]
+                        },
+                        {
+                            id: 2,
+                            title: "ICMon",
+                            description: "Project description.",
+                            category: "Academic",
+                            tags: ["tag1", "tag2", "tag3"]
+                        },
+                        {
+                            id: 3,
+                            title: "ChaCuN",
+                            description: "Project description.",
+                            category: "Academic",
+                            tags: ["tag1", "tag2", "tag3"]
+                        },
+                        {
+                            id: 4,
+                            title: "Game of Lif",
+                            description: "Project description.",
+                            category: "Academic",
+                            tags: ["tag1", "tag2", "tag3"]
+                        },
+                        {
+                            id: 5,
+                            title: "Boids Simulation",
+                            description: "Project description.",
+                            category: "Academic",
+                            tags: ["tag1", "tag2", "tag3"]
+                        },
+                        {
+                            id: 6,
+                            title: "Pixel Construction",
+                            description: "Project description.",
+                            category: "Academic",
+                            tags: ["tag1", "tag2", "tag3"]
+                        },
+                        {
+                            id: 7,
+                            title: "Small-scale MLmodels",
+                            description: "Project description.",
+                            category: "Academic",
+                            tags: ["tag1", "tag2", "tag3"]
+                        },
+                        {
+                            id: 8,
+                            title: "Exploring Computer Graphic",
+                            description: "Project description.",
+                            category: "Academic",
+                            tags: ["tag1", "tag2", "tag3"]
+                        },
+                        {
+                            id: 9,
+                            title: "Distributed Key-ValueStore",
+                            description: "Project description.",
+                            category: "Academic",
+                            tags: ["tag1", "tag2", "tag3"]
+                        },
+                        {
+                            id: 10,
+                            title: "S4S-Connect",
+                            description: "Project description.",
+                            category: "Personal",
+                            tags: ["tag1", "tag2", "tag3"]
+                        }
                     ],
                     experiences: [
                         { id: 1, position: "Some experience.", place: "Some place.", period: "Some period.", details: "Some details." },
@@ -154,42 +219,37 @@
                 window.addEventListener('load', () => {
                     hideLoader();
                     showLoader();
+
+                    const themeToggleBtn = document.getElementById('theme-toggle');
+                    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+                    function setTheme(theme) {
+                        if (theme === 'dark') {
+                            document.documentElement.setAttribute('data-theme', 'dark');
+                            themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
+                        } else {
+                            document.documentElement.removeAttribute('data-theme');
+                            themeToggleBtn.innerHTML = '<i class="fas fa-moon"></i>';
+                        }
+                        localStorage.setItem('theme', theme);
+                    }
+
+                    const savedTheme = localStorage.getItem('theme');
+                    if (savedTheme) {
+                        setTheme(savedTheme);
+                    } else if (prefersDarkScheme.matches) {
+                        setTheme('dark');
+                    } else {
+                        setTheme('light');
+                    }
+
+                    themeToggleBtn.addEventListener('click', () => {
+                        const currentTheme = document.documentElement.getAttribute('data-theme');
+                        setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+                    });
                 });
             }
         }).mount('#app')
-    </script>
-    <script>
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-
-    function setTheme(theme) {
-        if (theme === 'dark') {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
-        } else {
-            document.documentElement.removeAttribute('data-theme');
-            themeToggleBtn.innerHTML = '<i class="fas fa-moon"></i>';
-        }
-        localStorage.setItem('theme', theme);
-    }
-    
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-        setTheme(savedTheme);
-    } else if (prefersDarkScheme.matches) {
-        setTheme('dark');
-    } else {
-        setTheme('light');
-    }
-
-    themeToggleBtn.addEventListener('click', () => {
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        if (currentTheme === 'dark') {
-            setTheme('light');
-        } else {
-            setTheme('dark');
-        }
-    });
     </script>
     </body>
 </html>
