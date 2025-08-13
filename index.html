@@ -27,23 +27,35 @@
             <i class="fas fa-moon"></i>
         </button>
         <header class="hero-section">
-            <div class="hero-text">
-                <h1>{{ name }}</h1>
-                <p>{{ tagline }}</p>
-                <div class="hero-networks">
-                    <a :href="'mailto:' + contact.email" class="network-link">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                    <a :href="contact.linkedin" target="_blank" rel="noopener" class="network-link">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">{{ name }}</h1>
+                    <p class="hero-subtitle">{{ tagline }}</p>
+                    <div class="hero-cta">
+                        <a href="#projects" class="cta-btn">View Projects</a>
+                        <a href="#contact" class="cta-btn outline">Contact Me</a>
+                    </div>
+                    <div class="hero-networks">
+                        <a :href="'mailto:' + contact.email" class="network-link" aria-label="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a :href="contact.linkedin" target="_blank" rel="noopener" class="network-link" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="network-link" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="image-wrapper">
+                        <img src="assets/img/me.png" alt="Adam Bekkar" class="profile-image" />
+                        <div class="image-decorator"></div>
+                    </div>
                 </div>
             </div>
-            <div class="hero-image">
-                <img src="assets/img/me.png" alt="Adam Bekkar" />
-            </div>
         </header>
-        
+
         <section>
             <h2>Projects</h2>
             <div v-for="category in ['Personal', 'Academic']" :key="category" class="project-category">
