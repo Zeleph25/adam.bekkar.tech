@@ -16,7 +16,9 @@
     --cta-primary: #42b983;
     --cta-primary-hover: #359f74;
     --cta-outline: #42b983;
-    --cta-outline-hover: rgba(66, 185, 131, 0.1)
+    --cta-outline-hover: rgba(66, 185, 131, 0.1);
+    --color-personal: #b97742;
+    --color-academic: #3498db;
 }
 
 [data-theme="dark"] {
@@ -257,15 +259,11 @@ section {
     box-sizing: border-box;
 }
 
-section + section {
-    border-top: 1px solid var(--muted);
-}
-
 section h2 {
-    font-size: 2rem;
-    margin-bottom: 2rem;
-    color: var(--heading-color);
-    text-align: center;
+    display: inline-block;
+    border-bottom: 3px solid var(--accent);
+    padding-bottom: 5px;
+    margin-bottom: 20px;
 }
 
 a {
@@ -292,6 +290,29 @@ a {
 
 .project-item:hover {
     box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.project-category h3 {
+    position: relative;
+    display: inline-block;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+}
+
+.project-category h3:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 4px;
+    width: 50px;
+    border-radius: 2px;
+    background-color: var(--color-personal);
+}
+
+.project-category:nth-of-type(2) h3:after {
+    background-color: var(--color-academic);
 }
 
 .project-description {
