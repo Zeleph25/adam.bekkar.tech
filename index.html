@@ -102,9 +102,13 @@
                 <table class="languages-table">
                     <tbody>
                         <tr v-for="lang in background.spoken" :key="lang.name">
-                            <td class="flag-cell">
-                                <i :class="lang.iconClass"></i>
-                            </td>
+                        <td class="flag-cell">
+                            <div v-if="lang.iconClass1 && lang.iconClass2" class="diagonal-flags">
+                                <i :class="lang.iconClass1" class="top-left-half"></i>
+                                <i :class="lang.iconClass2" class="bottom-right-half"></i>
+                            </div>
+                            <i v-else-if="lang.iconClass" :class="lang.iconClass"></i>
+                        </td>
                             <td class="lang-name-cell">
                                 {{ lang.name }}
                             </td>

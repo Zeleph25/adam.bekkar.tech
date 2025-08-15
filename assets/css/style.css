@@ -262,6 +262,20 @@ body {
     color: var(--accent);
 }
 
+@media (max-width: 768px) {
+    .navbar-logo {
+        font-size: 1.5rem;
+        margin-right: 0;
+    }
+
+    .theme-toggle-btn {
+        font-size: 1.5rem;
+        text-decoration: none;
+        color: var(--text-color);
+        font-weight: 500;
+    }
+}
+
 .navbar-links a {
     position: relative;
     text-decoration: none;
@@ -702,6 +716,30 @@ ul {
     text-align: center;
     font-size: 1.5rem;
     color: var(--accent);
+}
+
+.diagonal-flags {
+    position: relative;
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+}
+
+.diagonal-flags i {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 32px;
+}
+
+.top-left-half {
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+.bottom-right-half {
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
 }
 
 .lang-name-cell {

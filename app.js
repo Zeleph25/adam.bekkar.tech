@@ -113,7 +113,7 @@ createApp({
                 spoken: [
                     { name: "Arabic", level: "C2", iconClass: "fi fi-ma" },
                     { name: "French", level: "C2", iconClass: "fi fi-fr" },
-                    { name: "English", level: "C1", iconClass: "fi fi-gb" },
+                    { name: "English", level: "C1", iconClass1: "fi fi-us", iconClass2: "fi fi-gb" },
                     { name: "Deutsch", level: "A2", iconClass: "fi fi-de" }
                 ],
                 experiences: [
@@ -145,12 +145,14 @@ createApp({
             const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
 
             function setTheme(theme) {
+                const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
                 if (theme === 'dark') {
                     document.documentElement.setAttribute('data-theme', 'dark');
-                    themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
+                    themeToggleBtn.innerHTML = isMobile ? 'White mode' : '<i class="fas fa-sun"></i>';
                 } else {
                     document.documentElement.removeAttribute('data-theme');
-                    themeToggleBtn.innerHTML = '<i class="fas fa-moon"></i>';
+                    themeToggleBtn.innerHTML = isMobile ? 'Dark mode' : '<i class="fas fa-moon"></i>';
                 }
                 localStorage.setItem('theme', theme);
             }
@@ -167,6 +169,11 @@ createApp({
             themeToggleBtn.addEventListener('click', () => {
                 const currentTheme = document.documentElement.getAttribute('data-theme');
                 setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+            });
+
+            window.addEventListener('resize', () => {
+                const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+                setTheme(currentTheme);
             });
         });
     },
