@@ -104,11 +104,12 @@ createApp({
                 programming: [
                     { name: "Java", iconClass: "fab fa-java" },
                     { name: "Scala", iconClass: "devicon-scala-plain colored" },
-                    { name: "Rust", iconClass: "devicon-rust-plain colored" },
+                    { name: "Rust", iconClass: "devicon-rust-plain" },
                     { name: "Python", iconClass: "fab fa-python" },
                     { name: "SQL", iconClass: "fas fa-database" },
                     { name: "Verilog", imgSrc: "https://www.svgrepo.com/show/374163/verilog.svg" },
-                    { name: "LaTeX", iconClass: "devicon-latex-plain colored" }
+                    { name: "LaTeX", iconClass: "devicon-latex-plain" },
+                    { name: "RISC-V", imgSrc: "https://upload.wikimedia.org/wikipedia/commons/8/82/RISC-V_icon.svg" }
                 ],
                 spoken: [
                     { name: "Arabic", level: "C2", iconClass: "fi fi-ma" },
