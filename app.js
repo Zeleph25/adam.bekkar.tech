@@ -116,6 +116,15 @@ createApp({
         }
     },
     mounted() {
+        function preventScrollRestoration() {
+            if ('scrollRestoration' in history) {
+                history.scrollRestoration = 'manual';
+            }
+            window.scrollTo(0, 0);
+        }
+
+        preventScrollRestoration();
+        
         window.addEventListener('load', () => {
             hideLoader();
             showLoader();
