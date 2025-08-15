@@ -77,8 +77,8 @@ window.addEventListener('scroll', () => {
             baseStagger: 100
         },
         {
-            selector: '.skill-category',
-            childSelectors: ['h3', 'li'],
+            selector: '.background-category',
+            childSelectors: ['h3', 'ul', 'li', '.background-item', 'i', 'span'],
             baseStagger: 0
         },
     ]);

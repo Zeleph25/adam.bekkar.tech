@@ -4,16 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="description" content="Adam Bekkar's personal portfolio showcasing projects, skills, and contact information." />
+    <meta name="description" content="Adam Bekkar's personal portfolio showcasing projects, background, and contact information." />
     <meta name="author" content="Adam Bekkar" />
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#42b983" />
-    <meta name="keywords" content="Portfolio, Adam Bekkar, Computer Science, Projects, Skills, Contact" />
+    <meta name="keywords" content="Portfolio, Adam Bekkar, Computer Science, Projects, Background, Contact" />
     
     <link rel="icon" href="assets/icons/favicon.png">
     <link rel="apple-touch-icon" href="assets/icons/favicon.png">
     <link rel="stylesheet" media="all" href="assets/css/style.css" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icons/6.6.6/css/flag-icons.min.css">
 
     <title>Portfolio</title>
 </head>
@@ -27,7 +29,7 @@
             <a href="#" class="navbar-logo">Adam Bekkar</a>
             <div class="navbar-links">
                 <a href="#projects">Projects</a>
-                <a href="#skills">Skills</a>
+                <a href="#background">Background</a>
                 <a href="#contact">Contact</a>
                 <button id="theme-toggle" aria-label="Toggle dark mode" class="theme-toggle-btn">
                     <i class="fas fa-moon"></i>
@@ -82,27 +84,39 @@
         </section>
 
         <section>
-            <h2>Skills</h2>
+            <h2>Background</h2>
 
-            <div class="skill-category">
+            <div class="background-category">
                 <h3>Programming Languages</h3>
-                <ul class="skill-list">
-                    <li v-for="skill in skills.programming" :key="skill">{{ skill }}</li>
-                </ul>
+                <div class="background-list background-grid">
+                    <div class="background-item" v-for="background in background.programming" :key="background.name">
+                        <img v-if="background.imgSrc" :src="background.imgSrc" :alt="background.name" width="50" height="50">
+                        <i v-else :class="background.iconClass"></i>
+                        <span>{{ background.name }}</span>
+                    </div>
+                </div>
             </div>
 
-            <div class="skill-category">
-                <h3>Tools</h3>
-                <ul class="skill-list">
-                    <li v-for="tool in skills.tools" :key="tool">{{ tool }}</li>
-                </ul>
-            </div>
-
-            <div class="skill-category">
+            <div class="background-category">
                 <h3>Spoken Languages</h3>
-                <ul class="skill-list">
-                    <li v-for="lang in skills.spoken" :key="lang">{{ lang }}</li>
-                </ul>
+                <table class="languages-table">
+                    <tbody>
+                        <tr v-for="lang in background.spoken" :key="lang.name">
+                            <td class="flag-cell">
+                                <i :class="lang.iconClass"></i>
+                            </td>
+                            <td class="lang-name-cell">
+                                {{ lang.name }}
+                            </td>
+                            <td class="level-bar-cell">
+                                <div class="level-bar">
+                                    <div class="level-fill" :style="{ width: langPercentage(lang.level) + '%' }"></div>
+                                </div>
+                            </td>
+                            <td class="level-text">{{ lang.level }}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </section>
         

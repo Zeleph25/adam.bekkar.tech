@@ -52,7 +52,7 @@ createApp({
                 },
                 {
                     id: 4,
-                    title: "Game of Lif",
+                    title: "Game of Life",
                     description: "Project description.",
                     category: "Academic",
                     tags: ["tag1", "tag2", "tag3"]
@@ -100,14 +100,26 @@ createApp({
                     tags: ["tag1", "tag2", "tag3"]
                 }
             ],
-            experiences: [
-                { id: 1, position: "Some experience.", place: "Some place.", period: "Some period.", details: "Some details." },
-                { id: 2, position: "Some experience.", place: "Some place.", period: "Some period.", details: "Some details." }
-            ],
-            skills: {
-                programming: ["Some Langage.", "Some Langage.", "Some Langage.", "Some Langage.", "Some Langage.", "Some Langage."],
-                tools: ["Some Tool.", "Some Tool.", "Some Tool."],
-                spoken: ["Some Langage.", "Some Langage.", "Some Langage."]
+            background: {
+                programming: [
+                    { name: "Java", iconClass: "fab fa-java" },
+                    { name: "Scala", iconClass: "devicon-scala-plain colored" },
+                    { name: "Rust", iconClass: "devicon-rust-plain colored" },
+                    { name: "Python", iconClass: "fab fa-python" },
+                    { name: "SQL", iconClass: "fas fa-database" },
+                    { name: "Verilog", imgSrc: "https://www.svgrepo.com/show/374163/verilog.svg" },
+                    { name: "LaTeX", iconClass: "devicon-latex-plain colored" }
+                ],
+                spoken: [
+                    { name: "Arabic", level: "C2", iconClass: "fi fi-ma" },
+                    { name: "French", level: "C2", iconClass: "fi fi-fr" },
+                    { name: "English", level: "C1", iconClass: "fi fi-gb" },
+                    { name: "Deutsch", level: "A2", iconClass: "fi fi-de" }
+                ],
+                experiences: [
+                    { id: 1, position: "Some experience.", place: "Some place.", period: "Some period.", details: "Some details." },
+                    { id: 2, position: "Some experience.", place: "Some place.", period: "Some period.", details: "Some details." }
+                ],
             },
             contact: {
                 email: "adam.bekkar@epfl.ch",
@@ -124,7 +136,7 @@ createApp({
         }
 
         preventScrollRestoration();
-        
+
         window.addEventListener('load', () => {
             hideLoader();
             showLoader();
@@ -157,5 +169,18 @@ createApp({
                 setTheme(currentTheme === 'dark' ? 'light' : 'dark');
             });
         });
+    },
+    methods: {
+        langPercentage(level) {
+            switch(level) {
+                case 'A1': return 20;
+                case 'A2': return 40;
+                case 'B1': return 60;
+                case 'B2': return 75;
+                case 'C1': return 90;
+                case 'C2': return 100;
+                default: return 0;
+            }
+        }
     }
 }).mount('#app');
