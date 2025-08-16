@@ -767,6 +767,11 @@ ul {
 
 .background-item {
     margin-bottom: 10px;
+    transition: transform 0.3s ease;
+}
+
+.background-item:hover {
+    transform: translateY(-2px);
 }
 
 .background-list {
@@ -796,38 +801,47 @@ ul {
     color: var(--heading-color);
 }
 
-.background-icon {
-    margin-right: 8px;
-    font-size: 18px;
-    vertical-align: middle;
-}
-
 .background-grid {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-}
-
-.background-item i {
-    font-size: 2.5rem;
-    margin-bottom: 8px;
+    margin-top: 20px;
 }
 
 .background-item {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     text-align: center;
-    font-size: 1rem;
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    padding: 15px;
+    width: 100px;
+    border-radius: 12px;
+    background: var(--row-bg);
+    box-shadow: 0 2px 4px var(--shadow-color);
+    transition: all 0.3s ease;
     opacity: 0;
-    transform: translateY(50px);
-    transition: all 0.6s ease-out;
+    transform: translateY(20px);
 }
 
 .background-item.visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+.background-item i {
+    font-size: 2.5rem;
+    margin-bottom: 8px;
+    color: var(--accent);
+}
+
+.background-item:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 5px 15px var(--shadow-color);
+}
+
+.background-item.visible:hover {
+    transform: translateY(-5px) scale(1.05);
 }
 
 .section-item, .project-item {
