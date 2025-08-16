@@ -34,12 +34,12 @@ function handleHeroScroll(scrollY) {
 
     if (!heroImage || !heroTitle || !heroSubtitle || !ctaBtn || !outlineBtn || !networks) return;
 
-    scaleFade(heroImage, scrollY, 100, 420);
-    fade(heroTitle, scrollY, 120, 440);
-    fade(heroSubtitle, scrollY, 140, 460);
-    ctaBtn.forEach(btn => fade(btn, scrollY, 160, 480));
-    fade(outlineBtn, scrollY, 160, 480);
-    fade(networks, scrollY, 180, 500);
+    scaleFade(heroImage, scrollY, 50, 450);
+    fade(heroTitle, scrollY, 0, 400);
+    fade(heroSubtitle, scrollY, 40, 440);
+    ctaBtn.forEach(btn => fade(btn, scrollY, 80, 480));
+    fade(outlineBtn, scrollY, 20, 420);
+    fade(networks, scrollY, 60, 460);
 }
 
 function revealOnScroll(optionsArray) {
