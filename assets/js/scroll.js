@@ -35,6 +35,73 @@ function handleScrollProgress() {
     updateElements();
 }
 
+function scrollToSection() {
+    function smoothScrolling(targetElement, options = {}) {
+        const {
+            duration = 1200,
+            offset = 0,
+            easing = t => t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2
+        } = options;
+
+        const navbar = document.getElementById('main-navbar');
+        const navbarHeight = navbar ? navbar.offsetHeight : 0;
+        const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+        const startPosition = window.scrollY;
+        const distance = targetPosition - startPosition - navbarHeight - offset;
+        let startTime = null;
+
+        function animateScroll(currentTime) {
+            if (!startTime) startTime = currentTime;
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const easedProgress = easing(progress);
+
+            window.scrollTo(0, startPosition + distance * easedProgress);
+
+            if (progress < 1) {
+                requestAnimationFrame(animateScroll);
+            }
+        }
+
+        requestAnimationFrame(animateScroll);
+    }
+    
+    document.querySelectorAll('.navbar-links a[href^="#"]').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+                const navbar = document.getElementById('main-navbar');
+                if (navbar.classList.contains('active')) {
+                    navbar.classList.remove('active');
+                }
+                
+                smoothScrolling(targetElement, {
+                    duration: 1000,
+                    offset: 20
+                });
+            }
+        });
+    });
+
+    document.querySelectorAll('.hero-buttons a[href^="#"]').forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+                scrollToSection(targetElement, {
+                    duration: 1200,
+                    offset: -50
+                });
+            }
+        });
+    });
+}
+
 function handleHeroScroll(scrollY) {
     function fade(element, scrollY, start, end, slideFactor = 0.15) {
         const factor = Math.min(Math.max((scrollY - start) / (end - start), 0), 1);
@@ -113,3 +180,5 @@ window.addEventListener('scroll', () => {
 document.addEventListener('DOMContentLoaded', () => {
     handleScrollProgress();
 });
+
+document.addEventListener('DOMContentLoaded', scrollToSection);

@@ -78,7 +78,7 @@
             </div>
         </header>
 
-        <section>
+        <section id="projects">
             <h2>Projects</h2>
             <div v-for="category in ['Personal', 'Academic']" :key="category" class="project-category">
                 <h3>{{ category }}</h3>
@@ -98,7 +98,7 @@
             </div>
         </section>
 
-        <section>
+        <section id="background">
             <h2>Background</h2>
 
             <div class="background-category">
@@ -139,7 +139,7 @@
             </div>
         </section>
         
-        <section>
+        <section id="contact">
             <h2>Contact</h2>
             <p>Email: <a :href="'mailto:' + contact.email">{{ contact.email }}</a></p>
             <p>LinkedIn: <a :href="contact.linkedin" target="_blank" rel="noopener">{{ contact.linkedin }}</a></p>
