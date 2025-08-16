@@ -9,6 +9,32 @@ function handleNavbarScroll(scrollY) {
     }
 }
 
+function handleScrollProgress() {
+    const progressBar = document.querySelector('.scroll-progress-bar');
+    const backToTop = document.querySelector('.back-to-top');
+
+    if (!progressBar || !backToTop) return;
+
+    const updateElements = () => {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrollPercent = scrollHeight > 0 ? Math.min(scrollTop / scrollHeight, 1) : 0;
+
+        progressBar.style.width = `${scrollPercent * 100}%`;
+
+        backToTop.classList.toggle('visible', scrollTop > 100);
+    };
+
+    backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    window.addEventListener('scroll', () => requestAnimationFrame(updateElements));
+    window.addEventListener('resize', () => requestAnimationFrame(updateElements));
+
+    updateElements();
+}
+
 function handleHeroScroll(scrollY) {
     function fade(element, scrollY, start, end, slideFactor = 0.15) {
         const factor = Math.min(Math.max((scrollY - start) / (end - start), 0), 1);
@@ -82,4 +108,8 @@ window.addEventListener('scroll', () => {
             baseStagger: 0
         },
     ]);
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    handleScrollProgress();
 });
