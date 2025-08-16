@@ -27,16 +27,21 @@
     <div id="app">
         <nav class="navbar" id="main-navbar">
             <a href="#" class="navbar-logo">Adam Bekkar</a>
-            <div class="navbar-links">
-                <a href="#projects">Projects</a>
-                <a href="#background">Background</a>
-                <a href="#contact">Contact</a>
+            <button class="hamburger" @click="toggleNavbar" aria-label="Toggle navigation menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            <div class="navbar-links" :class="{ 'active': isNavOpen }">
+                <a href="#projects" @click="closeNavOnClick">Projects</a>
+                <a href="#background" @click="closeNavOnClick">Background</a>
+                <a href="#contact" @click="closeNavOnClick">Contact</a>
                 <button id="theme-toggle" aria-label="Toggle dark mode" class="theme-toggle-btn">
                     <i class="fas fa-moon"></i>
                 </button>
             </div>
         </nav>
-
+        
         <header class="hero-section">
             <div class="hero-content">
                 <div class="hero-text">

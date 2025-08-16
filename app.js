@@ -26,6 +26,7 @@ createApp({
     data() {
         return {
             isLoading: true,
+            isNavOpen: false,
             name: "Adam Bekkar",
             tagline: "Aspiring computer science student interested in research and problem-solving.",
             projects: [
@@ -188,6 +189,19 @@ createApp({
                 case 'C1': return 90;
                 case 'C2': return 100;
                 default: return 0;
+            }
+        },
+        toggleNavbar() {
+            this.isNavOpen = !this.isNavOpen;
+            const hamburger = document.querySelector('.hamburger');
+            hamburger.classList.toggle('active');
+            document.body.classList.toggle('menu-open');
+        },
+        closeNavOnClick() {
+            if (window.innerWidth <= 768) {
+                this.isNavOpen = false;
+                document.querySelector('.hamburger').classList.remove('active');
+                document.body.classList.remove('menu-open');
             }
         }
     }
